@@ -23,6 +23,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {EditorModule} from 'primeng/editor';
+import {MessagesModule} from 'primeng/messages';
+
 
 
 
@@ -51,7 +53,9 @@ import {EditorModule} from 'primeng/editor';
     InputNumberModule,
     InputSwitchModule,
     ColorPickerModule,
-    EditorModule
+    EditorModule,
+    MessagesModule,
+    
   
 
 

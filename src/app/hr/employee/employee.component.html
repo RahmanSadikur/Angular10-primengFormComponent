@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <p-messages></p-messages>
     
         <form #employee="ngForm" (ngSubmit)="OnSubmit(employee)">
             <div class="row">
@@ -59,7 +60,7 @@
                     </span>
                     <span *ngIf="salary.invalid && salary.touched" class="err">Salary Field is Invalid<br/></span><br/>
                     <span class="p-float-label" >
-                        <p-autoComplete  [(ngModel)]="employee.skills" id="skills" name="skills" required skills #skills="ngModel" [suggestions]="filteredCountries" (completeMethod)="filterApplicant($event)"  autoWidth="false"  [inputStyle]="{'width':'600px'}"></p-autoComplete><br/><br/>
+                        <p-autoComplete  [(ngModel)]="employee.skills" id="skills" name="skills" required skills #skills="ngModel" [suggestions]="filteredCountries" (completeMethod)="filterApplicant($event)"  autoWidth="false"  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-autoComplete><br/><br/>
 
                         <label for="skills">Skills</label>
                     </span>
@@ -73,7 +74,7 @@
                     <br/>
                     <span class="p-float-label" >
                         <!-- <p-chips inputId=="hobbies" separator=","  name="hobbies" [(ngModel)]="employee.hobbies"  autoWidth="false" [style]="{'width':'100%'}"> </p-chips> -->
-                        <p-chips [(ngModel)]="employee.hobbies" name="hobbies" separator="," autoWidth="false" [style]="{'width':'100%'}"></p-chips>
+                        <p-chips [(ngModel)]="employee.hobbies" name="hobbies" separator="," autoWidth="false"  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-chips>
                         <label for="hobbies">Hobbies</label>
                     </span><br/>
                     <div class="p-field-checkbox">
@@ -103,9 +104,6 @@
                     <button pButton pRipple type="submit" [disabled]="employee.invalid"  label="Submit" class="p-button-raised p-button-text" style="width:100%;"></button>
                     
                 </p-card>
-            
-
-
         </div>
     </div>
     </form>

@@ -7,3 +7,19 @@ input.ng-valid{
 .err{
     color:red
 }
+.ui-chips {
+    display: inline-block
+  }
+  
+  .ui-chips ul {
+    border:2px dashed green !important; /* 👈 I have use important */
+  }
+  
+   .ui-chips > ul.ui-inputtext .ui-chips-token {
+     
+      width: 100% !important; /* 👈 I have use important */
+   
+  }
+  chip-width{
+    width: 100% !important;
+  }

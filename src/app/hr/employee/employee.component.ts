@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import{employee} from './employee'
+import{employee} from './employee';
+import {Message,MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
+  providers: [MessageService]
 })
 
 export class EmployeeComponent implements OnInit {
 employye:employee;
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   // employee={
   //   name:"",
@@ -61,7 +63,8 @@ employye:employee;
   filteredCountries=[];
   OnSubmit(data){
     console.warn(data);
-    alert(data.skills);
+    this.messageService.add({severity:'success', summary:'Service Message', detail:data.skills});
+
   }
 
   ngOnInit(): void {
