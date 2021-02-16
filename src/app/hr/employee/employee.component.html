@@ -1,0 +1,115 @@
+<div class="container-fluid">
+    
+        <form #employee="ngForm" (ngSubmit)="OnSubmit(employee)">
+            <div class="row">
+        <div class="col col-md-6">
+            <p-editor [(ngModel)]="employee.bio" name="bio" [style]="{'height':'600px'}">
+                <ng-template pTemplate="header">
+                    <span class="ql-formats">
+                        <button type="button" class="ql-bold" aria-label="Bold"></button>
+                        <button type="button" class="ql-italic" aria-label="Italic"></button>
+                        <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                </ng-template>
+            </p-editor>
+
+        </div>
+        <div class="col col-md-6">
+            
+                <p-card>
+                    <span class="p-float-label" >
+                        <input id="name" required name #name="ngModel" type="text" name="name" [(ngModel)]="employee.name"  pInputText style="width:100%;"> 
+                        <label for="name">Name</label>
+                    </span>
+                    <span *ngIf="name.invalid && name.touched" class="err">Name Field is Invalid<br/></span><br/>
+                    <span class="p-float-label" >
+                        <p-inputMask id="userName" required userName #userName="ngModel" mask="aaaaaaaaa,aaaaaaaaa" type="text" name="userName" [(ngModel)]="employee.userName"  autoWidth="false" [style]="{'width':'100%'}"> </p-inputMask>
+                        <label for="userName">User Name</label>
+                    </span>
+                    <span *ngIf="userName.invalid && userName.touched" class="err">User Name Field is Invalid<br/></span><br/>
+                    <span class="p-float-label" >
+                        <input style="width:200%;" id="password" #password="ngModel" required  minlength=6 type="password" name="password" [(ngModel)]="employee.password" pInputText style="width:100%;"> 
+                        <label for="password">Password</label>
+                    </span>
+                    <span *ngIf="password.invalid && password.touched" class="err">Password Field is Invalid<br/></span><br/>
+
+                    <span class="p-float-label" >
+                        <p-inputMask id="phone" required phone #phone="ngModel" mask="(999)9999-999999" type="text" name="phone" [(ngModel)]="employee.phone"  autoWidth="false" [style]="{'width':'100%'}"> </p-inputMask>
+                        <label for="phone">Phone</label>
+                    </span>
+                    <span *ngIf="phone.invalid && phone.touched" class="err">Phone Field is Invalid<br/></span><br/>
+
+                    <span class="p-float-label" >
+                        <textarea pInputTextarea id="address" required address #address="ngModel" type="text" name="address" [(ngModel)]="employee.address"  autoWidth="false" [style]="{'width':'100%'}"> </textarea>
+                        <label for="address">Address</label>
+                    </span>
+                    <span *ngIf="address.invalid && address.touched" class="err">Address Field is Invalid<br/></span><br/>
+                    <span class="p-float-label" >
+                       
+                        <!-- <p-calendar  [(ngModel)]="employee.address" required dob #dob="ngModel" name="dob" dateFormat="dd.mm.yy" [showIcon]="true" inputId="dob" id="dob"  [style]="{'width':'100%'}"></p-calendar><br/><br/> -->
+                        <p-calendar  [(ngModel)]="employee.dob" name="dob" dateFormat="dd.mm.yy" [showIcon]="true" inputId="dob"  [style]="{'width':'100%'}"></p-calendar><br/><br/>
+                        <label for="dob">Date of Birth</label>
+                    </span>
+                    <!-- <span *ngIf="dob.invalid && dob.touched" class="err">Date Of Birth Field is Invalid<br/></span><br/> -->
+                    <span class="p-float-label" >
+                       
+                        <p-inputNumber [(ngModel)]="employee.salary" mode="currency" inputId="salary" name="salary" required salary #salary="ngModel" currency="bdt" locale="bd-BD" autoWidth="false" [style]="{'width':'100%'}">
+                        </p-inputNumber><br/><br/>
+                        <label for="salary">salary</label>
+                    </span>
+                    <span *ngIf="salary.invalid && salary.touched" class="err">Salary Field is Invalid<br/></span><br/>
+                    <span class="p-float-label" >
+                        <p-autoComplete  [(ngModel)]="employee.skills" id="skills" name="skills" required skills #skills="ngModel" [suggestions]="filteredCountries" (completeMethod)="filterApplicant($event)"  autoWidth="false"  [inputStyle]="{'width':'600px'}"></p-autoComplete><br/><br/>
+
+                        <label for="skills">Skills</label>
+                    </span>
+                    <span *ngIf="skills.invalid && skills.touched" class="err">Skills Field is Invalid<br/></span><br/>
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="gender" value="Male" [(ngModel)]="employee.gender" inputId="gender1" [styleClass]="'custom-width'"></p-radioButton>
+                        &nbsp;&nbsp; <label for="gender1">Male</label>&nbsp;&nbsp;
+                        <p-radioButton name="gender" value="Female" [(ngModel)]="employee.gender" inputId="gender2"></p-radioButton>
+                        &nbsp;&nbsp;<label for="gender2">Female</label>
+                    </div>
+                    <br/>
+                    <span class="p-float-label" >
+                        <!-- <p-chips inputId=="hobbies" separator=","  name="hobbies" [(ngModel)]="employee.hobbies"  autoWidth="false" [style]="{'width':'100%'}"> </p-chips> -->
+                        <p-chips [(ngModel)]="employee.hobbies" name="hobbies" separator="," autoWidth="false" [style]="{'width':'100%'}"></p-chips>
+                        <label for="hobbies">Hobbies</label>
+                    </span><br/>
+                    <div class="p-field-checkbox">
+                        <p-checkbox name="isMareid" value=true [(ngModel)]="employee.isMareid" inputId="isMareid"></p-checkbox>
+                       &nbsp; <label for="isMareid">Is Mareid</label>
+                    </div><br/><br/>
+                    <span class="p-float-label" >
+                        <p-dropdown  [options]="BloodList" [(ngModel)]="employee.bloodgroup" name="bloodgroup" optionLabel="name" optionValue="id"  autoWidth="false" [style]="{'width':'100%'}"></p-dropdown><br/><br/>
+                        
+                        <label for="bloodgroup">Blood Group</label>
+                    </span>
+                    
+                    <span class="p-float-label" >
+                        <p-multiSelect  [options]="Country" [(ngModel)]="employee.visitedCountry" name="visitedCountry" optionLabel="name" optionValue="id"  autoWidth="false" [style]="{'width':'100%'}"></p-multiSelect><br/><br/>
+                        
+                        <label for="visitedCountry">Country You Have Visited earlier</label>
+                    </span>
+                    <span class="p-label" >
+                        <p-inputSwitch [(ngModel)]="employee.ff" id="ff" name="ff"></p-inputSwitch>
+                        &nbsp;&nbsp; <label for="ff">Fridom Figther Quota?</label>
+                    </span>
+                    <span class="p-label" >
+                        <p-colorPicker [(ngModel)]="employee.fcolor" id="fcolor" name="fcolor"></p-colorPicker>
+                        &nbsp;&nbsp; <label for="fcolor">Favourite Color</label>
+                    </span>
+                    
+                    <button pButton pRipple type="submit" [disabled]="employee.invalid"  label="Submit" class="p-button-raised p-button-text" style="width:100%;"></button>
+                    
+                </p-card>
+            
+
+
+        </div>
+    </div>
+    </form>
+        
+   
+
+</div>

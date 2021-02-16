@@ -1,0 +1,24 @@
+
+
+
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <button pButton label="Test 1" class="p-button-raised p-button-text" routerLink="test1"></button>
+   <!-- // <ng-template ngbNavContent>First content</ng-template> -->
+  </li>
+  <li ngbNavItem>
+    <button pButton label="Test 2" class="p-button-raised p-button-text" routerLink="test2"></button>
+  </li>
+  <li ngbNavItem>
+    <button pButton label="New Applicant" class="p-button-raised p-button-text" routerLink="/Admission/newapplicant"></button>
+  </li>
+  <li ngbNavItem>
+    <button pButton label="Employee" class="p-button-raised p-button-text" routerLink="/hr/employee"></button>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>
+
+<br/>
+ <router-outlet></router-outlet> 
+
+

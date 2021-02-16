@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <form #newApplicant="ngForm" (ngSubmit)="OnSubmit(Applicant)">
+
+   
+    <div class="row">
+        <div class="col col-md-6">
+
+            <p-table [columns]="cols" #dt  [value]="products" [paginator]="true" [rows]="2" sortMode="multiple" [globalFilterFields]="['name']" selectionMode="single" (onRowSelect)="onRowSelect($event)"  [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="table-header">
+                        List of Products
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns"  let-rowIndex="rowIndex" >
+                    <tr [pSelectableRow]="rowData"  >
+                        <td *ngFor="let col of columns" >
+                        {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <!-- <ng-template pTemplate="footer" let-columns>
+                    <tr>
+                        <td *ngFor="let col of columns">
+                        {{col.header}}
+                        </td>
+                    </tr>
+                </ng-template> -->
+                <ng-template pTemplate="summary">
+               {{selectedProducts.name}}
+                </ng-template>
+            </p-table>
+
+          
+
+
+        </div>
+        <div class="col col-md-6">
+            <p-card>
+                
+               
+               <div class="form-control">
+              
+                <p-autoComplete class="ngcustome" [(ngModel)]="Applicant.Name" id="name" name="Name" [suggestions]="filterednewApplicant" (completeMethod)="filterApplicant($event)"  autoWidth="false" class="ngcustome " [inputStyle]="{'width':'600px'}"></p-autoComplete><br/><br/>
+                <p-dropdown  [options]="NewApplicantName" [(ngModel)]="Applicant.Uid" name="Uid" optionLabel="name" optionValue="id"  autoWidth="false" [style]="{'width':'100%'}"></p-dropdown><br/><br/>
+                <p-multiSelect [options]="NewApplicantName" [(ngModel)]="Applicant.id" name="id" optionLabel="name" optionValue="id" autoWidth="false" [style]="{'width':'100%'}"></p-multiSelect><br/><br/>
+                <p-calendar  [(ngModel)]="Applicant.date" name="date" dateFormat="dd.mm.yy" [showIcon]="true" inputId="phone"  [style]="{'width':'100%'}"></p-calendar><br/><br/>
+                <!-- <p-inputMask [(ngModel)]="Applicant.phone"  name="phone" mask="(+999)9999-999999" characterPattern="[0-9]" autoWidth="false" [style]="{'width':'100%'}"></p-inputMask><br/><br/> -->
+                <div class="p-field-radiobutton">
+                    <p-radioButton name="isvalid" value=true [(ngModel)]="Applicant.isvalid" inputId="isvalid1" [styleClass]="'custom-width'"></p-radioButton>
+                    <label for="isvalid1">Yes</label>
+                </div>
+                <div class="p-field-radiobutton">
+                    <p-radioButton name="isvalid" value=false [(ngModel)]="Applicant.isvalid" inputId="isvalid0"></p-radioButton>
+                    <label for="isvalid0">No</label>
+                </div>
+                <div class="p-field-checkbox">
+                    <p-checkbox name="groupname" value="Good" [(ngModel)]="Applicant.selectedValues" inputId="Good"></p-checkbox>
+                    <label for="Good">Good</label>
+                </div>
+                <div class="p-field-checkbox">
+                    <p-checkbox name="groupname" value="Very Good" [(ngModel)]="Applicant.selectedValues" inputId="veryGood"></p-checkbox>
+                    <label for="veryGood">Very Good</label>
+                </div>
+                
+               
+
+                <button pButton pRipple type="submit"  label="Submit" class="p-button-raised p-button-text" autoWidth="false" [style]="{'width':'100%'}" ></button>
+            </div>
+            </p-card>
+
+
+
+        </div>
+        
+    </div>
+    
+</form>
+</div>
