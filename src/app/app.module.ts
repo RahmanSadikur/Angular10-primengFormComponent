@@ -17,6 +17,8 @@ import {ButtonModule} from 'primeng/button';
 import { AdmissionModule} from './admission/admission.module';
 import{HRModule}from './hr/hr.module';
 import {CardModule} from 'primeng/card';
+import {MenubarModule} from 'primeng/menubar';
+import {StepsModule} from 'primeng/steps';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import {CardModule} from 'primeng/card';
      AdmissionModule,
      HRModule,
      CardModule,
+     MenubarModule,
+     StepsModule
     
   ],
   providers: [],

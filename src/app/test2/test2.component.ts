@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Test2Component implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   User={
     email:"example@example.com",
     password:"example"
@@ -18,5 +19,15 @@ export class Test2Component implements OnInit {
   OnSubmit(data){
     console.warn(data);
   }
+
+  nextPage() {
+   
+        this.router.navigate(['/Admission/newapplicant']);
+    
+}
+
+prevPage() {
+    this.router.navigate(['test1']);
+}
 
 }

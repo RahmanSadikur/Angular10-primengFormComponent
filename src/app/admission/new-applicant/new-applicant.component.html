@@ -49,13 +49,13 @@
             <p-card>
                 
                
-               <div class="form-control">
               
-                <p-autoComplete class="ngcustome" [(ngModel)]="Applicant.Name" id="name" name="Name" [suggestions]="filterednewApplicant" (completeMethod)="filterApplicant($event)"  autoWidth="false" class="ngcustome " [inputStyle]="{'width':'600px'}"></p-autoComplete><br/><br/>
+              
+                <p-autoComplete class="ngcustome" [(ngModel)]="Applicant.Name" id="name" name="Name" [suggestions]="filterednewApplicant" (completeMethod)="filterApplicant($event)"  autoWidth="false" [style]="{'width':'100%'}"[inputStyle]="{'width':'100%'}"></p-autoComplete><br/><br/>
                 <p-dropdown  [options]="NewApplicantName" [(ngModel)]="Applicant.Uid" name="Uid" optionLabel="name" optionValue="id"  autoWidth="false" [style]="{'width':'100%'}"></p-dropdown><br/><br/>
                 <p-multiSelect [options]="NewApplicantName" [(ngModel)]="Applicant.id" name="id" optionLabel="name" optionValue="id" autoWidth="false" [style]="{'width':'100%'}"></p-multiSelect><br/><br/>
                 <p-calendar  [(ngModel)]="Applicant.date" name="date" dateFormat="dd.mm.yy" [showIcon]="true" inputId="phone"  [style]="{'width':'100%'}"></p-calendar><br/><br/>
-                <!-- <p-inputMask [(ngModel)]="Applicant.phone"  name="phone" mask="(+999)9999-999999" characterPattern="[0-9]" autoWidth="false" [style]="{'width':'100%'}"></p-inputMask><br/><br/> -->
+
                 <div class="p-field-radiobutton">
                     <p-radioButton name="isvalid" value=true [(ngModel)]="Applicant.isvalid" inputId="isvalid1" [styleClass]="'custom-width'"></p-radioButton>
                     <label for="isvalid1">Yes</label>
@@ -76,7 +76,8 @@
                
 
                 <button pButton pRipple type="submit"  label="Submit" class="p-button-raised p-button-text" autoWidth="false" [style]="{'width':'100%'}" ></button>
-            </div>
+   
+            
             </p-card>
 
 
@@ -86,4 +87,19 @@
     </div>
     
 </form>
+</div>
+<div class="container-fluid">
+    
+        <p-card>
+            <div class="row">
+        <div class="col col-md-2">
+            <button pButton pRipple label="Back" (click)="prevPage()" icon="pi pi-angle-left" class="p-button-raised p-button-text" style="width:100%;"></button>
+        </div>
+        <div class="col col-md-8"></div>
+        <div class="col col-md-2">
+            <button pButton pRipple label="Next" (click)="nextPage()" icon="pi pi-angle-right" iconPos="right" class="p-button-raised p-button-text" style="width:100%;"></button>
+        </div>
+    </div>
+    </p-card>
+    
 </div>

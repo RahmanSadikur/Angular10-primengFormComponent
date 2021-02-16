@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{employee} from './employee';
 import {Message,MessageService} from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -11,7 +12,7 @@ import {Message,MessageService} from 'primeng/api';
 
 export class EmployeeComponent implements OnInit {
 employye:employee;
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,private router: Router) { }
 
   // employee={
   //   name:"",
@@ -91,5 +92,7 @@ employye:employee;
 
 
    }
-
+   prevPage() {
+    this.router.navigate(['/Admission/newapplicant']);
+    }
 }

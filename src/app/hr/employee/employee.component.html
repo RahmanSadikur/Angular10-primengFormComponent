@@ -4,15 +4,18 @@
         <form #employee="ngForm" (ngSubmit)="OnSubmit(employee)">
             <div class="row">
         <div class="col col-md-6">
-            <p-editor [(ngModel)]="employee.bio" name="bio" [style]="{'height':'600px'}">
-                <ng-template pTemplate="header">
-                    <span class="ql-formats">
-                        <button type="button" class="ql-bold" aria-label="Bold"></button>
-                        <button type="button" class="ql-italic" aria-label="Italic"></button>
-                        <button type="button" class="ql-underline" aria-label="Underline"></button>
-                    </span>
-                </ng-template>
-            </p-editor>
+            <p-card>
+                <p-editor [(ngModel)]="employee.bio" name="bio" [style]="{'height':'600px'}">
+                    <ng-template pTemplate="header">
+                        <span class="ql-formats">
+                            <button type="button" class="ql-bold" aria-label="Bold"></button>
+                            <button type="button" class="ql-italic" aria-label="Italic"></button>
+                            <button type="button" class="ql-underline" aria-label="Underline"></button>
+                        </span>
+                    </ng-template>
+                </p-editor>
+            </p-card>
+           
 
         </div>
         <div class="col col-md-6">
@@ -100,7 +103,7 @@
                         <p-colorPicker [(ngModel)]="employee.fcolor" id="fcolor" name="fcolor"></p-colorPicker>
                         &nbsp;&nbsp; <label for="fcolor">Favourite Color</label>
                     </span>
-                    
+                   
                     <button pButton pRipple type="submit" [disabled]="employee.invalid"  label="Submit" class="p-button-raised p-button-text" style="width:100%;"></button>
                     
                 </p-card>
@@ -110,4 +113,18 @@
         
    
 
+</div>
+<div class="container-fluid">
+    
+        <p-card>
+            <div class="row">
+        <div class="col col-md-2">
+            <button pButton pRipple label="Back" (click)="prevPage()" icon="pi pi-angle-left" class="p-button-raised p-button-text" style="width:100%;"></button>
+        </div>
+        <div class="col col-md-8"></div>
+        <div class="col col-md-2"></div>
+    </div>
+        </p-card>
+        
+    
 </div>

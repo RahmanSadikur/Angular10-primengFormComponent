@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import{NewApplicantService}from '../new-applicant.service';
 import {Product} from './products';
 
@@ -15,7 +16,7 @@ export class NewApplicantComponent implements OnInit {
  i:number;
  
 
-  constructor(private NewApplicantService:NewApplicantService ) { }
+  constructor(private NewApplicantService:NewApplicantService ,private router: Router) { }
 
   ngOnInit(): void {
     this.NewApplicantService.getApplicant().subscribe(data=>{
@@ -80,6 +81,14 @@ export class NewApplicantComponent implements OnInit {
 
 
    }
+   nextPage() {
+   
+    this.router.navigate(['/hr/employee']);
 
+}
+
+prevPage() {
+this.router.navigate(['test2']);
+}
   
 }

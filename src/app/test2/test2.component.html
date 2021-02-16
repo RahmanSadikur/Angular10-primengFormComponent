@@ -12,13 +12,17 @@
             </span>
             <span *ngIf="email.invalid && email.touched" class="err">Email Field is Invalid<br/></span><br/>
             <span class="p-float-label" style="width: fit-content;">
-                <input style="width:200%;" id="password" #password="ngModel" required  minlength=3 type="password" name="password" [(ngModel)]="User.password" pInputText > 
+                <input  style="width:200%"  id="password" #password="ngModel" required  minlength=3 type="password" name="password" [(ngModel)]="User.password" pInputText > 
                 <label for="password">Password</label>
             </span>
             <span *ngIf="password.invalid && password.touched" class="err">Password Field is Invalid<br/></span><br/>
             <button pButton pRipple type="submit" [disabled]="user.invalid"  label="Submit" class="p-button-raised p-button-text" style="width:100%;"></button>
             
         </p-card>
+       
+       
+        
+              
   
  
     </div>
@@ -29,3 +33,18 @@
 </div>
 </form>
 
+<div class="container-fluid">
+    
+    <p-card>
+        <div class="row">
+        <div class="col col-md-2">
+            <button pButton pRipple label="Back" (click)="prevPage()" icon="pi pi-angle-left" class="p-button-raised p-button-text" style="width:100%;"></button>
+        </div>
+        <div class="col col-md-8"></div>
+        <div class="col col-md-2">
+            <button pButton pRipple label="Next" (click)="nextPage()" icon="pi pi-angle-right" iconPos="right" class="p-button-raised p-button-text" style="width:100%;"></button>
+        </div>
+    </div>
+        </p-card>
+   
+</div>

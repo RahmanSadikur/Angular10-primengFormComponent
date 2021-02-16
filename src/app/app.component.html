@@ -1,10 +1,10 @@
 
 
-
-<ul ngbNav #nav="ngbNav" class="nav-tabs">
+<!-- Using NavBar -->
+<!-- <ul ngbNav #nav="ngbNav" class="nav-tabs">
   <li ngbNavItem>
     <button pButton label="Test 1" class="p-button-raised p-button-text" routerLink="test1"></button>
-   <!-- // <ng-template ngbNavContent>First content</ng-template> -->
+   
   </li>
   <li ngbNavItem>
     <button pButton label="Test 2" class="p-button-raised p-button-text" routerLink="test2"></button>
@@ -18,7 +18,22 @@
 </ul>
 <div [ngbNavOutlet]="nav"></div>
 
-<br/>
+<br/> -->
+<!-- Using Manubar -->
+ <p-menubar [model]="items">
+  <ng-template pTemplate="start">
+      <img src="assets/showcase/images/primeng.svg" height="40" class="p-mr-2">
+  </ng-template>
+  <ng-template pTemplate="end">
+      <input type="text" pInputText placeholder="Search">
+  </ng-template>
+</p-menubar> 
+
+
+<div class="card">
+  
+  <p-steps [model]="items" [readonly]="true"></p-steps>
+</div>
  <router-outlet></router-outlet> 
 
 
