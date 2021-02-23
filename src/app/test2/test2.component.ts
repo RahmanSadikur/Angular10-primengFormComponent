@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { FormControl, FormGroup,Validators,AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -19,6 +20,20 @@ export class Test2Component implements OnInit {
   OnSubmit(data){
     console.warn(data);
   }
+
+//   userForm = new FormGroup({
+//     'user.email': new FormControl('', [
+//         Validators.required,
+//         Validators.minLength(2),
+//         Validators.maxLength(30)
+//     ]),
+//     'user.password': new FormControl('', [
+//         Validators.required,
+//         Validators.minLength(4),
+        
+       
+//     ]),
+// })
 
   nextPage() {
    

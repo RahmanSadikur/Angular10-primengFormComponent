@@ -19,6 +19,8 @@ import{HRModule}from './hr/hr.module';
 import {CardModule} from 'primeng/card';
 import {MenubarModule} from 'primeng/menubar';
 import {StepsModule} from 'primeng/steps';
+import { VonPrimengFormModule } from '@von-development-studio/primeng-form-validation';
+
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import {StepsModule} from 'primeng/steps';
     AppRoutingModule,
      HttpClientModule,
      FormsModule,
+    
      ReactiveFormsModule,
      InputTextModule,
      ButtonModule,
@@ -44,7 +47,8 @@ import {StepsModule} from 'primeng/steps';
      HRModule,
      CardModule,
      MenubarModule,
-     StepsModule
+     StepsModule,
+     VonPrimengFormModule
     
   ],
   providers: [],

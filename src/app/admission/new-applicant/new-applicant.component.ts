@@ -38,7 +38,7 @@ export class NewApplicantComponent implements OnInit {
   NewApplicantName={};
 
   Applicant={
-    Name:"",
+    Name:"grt",
     Uid:-1,
     id:[],
     isvalid:false,

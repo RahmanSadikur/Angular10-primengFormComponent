@@ -1,10 +1,11 @@
 <div class="container-fluid">
-    <p-messages></p-messages>
+    <p-toast position="top-right" ></p-toast>
     
-        <form #employee="ngForm" (ngSubmit)="OnSubmit(employee)">
+        <form #emp="ngForm" (ngSubmit)="OnSubmit(employee)">
             <div class="row">
         <div class="col col-md-6">
             <p-card>
+                
                 <p-editor [(ngModel)]="employee.bio" name="bio" [style]="{'height':'600px'}">
                     <ng-template pTemplate="header">
                         <span class="ql-formats">
@@ -21,6 +22,8 @@
         <div class="col col-md-6">
             
                 <p-card>
+                    
+                    
                     <span class="p-float-label" >
                         <input id="name" required name #name="ngModel" type="text" name="name" [(ngModel)]="employee.name"  pInputText style="width:100%;"> 
                         <label for="name">Name</label>
@@ -51,8 +54,10 @@
                     <span class="p-float-label" >
                        
                         <!-- <p-calendar  [(ngModel)]="employee.address" required dob #dob="ngModel" name="dob" dateFormat="dd.mm.yy" [showIcon]="true" inputId="dob" id="dob"  [style]="{'width':'100%'}"></p-calendar><br/><br/> -->
-                        <p-calendar  [(ngModel)]="employee.dob" name="dob" dateFormat="dd.mm.yy" [showIcon]="true" inputId="dob"  [style]="{'width':'100%'}"></p-calendar><br/><br/>
-                        <label for="dob">Date of Birth</label>
+                        <p-calendar  [(ngModel)]="employee.dob" name="dob" dateFormat="dd.mm.yy" [showIcon]="true" inputId="dob"  [style]="{'width':'100%'}" >
+                            
+                        </p-calendar><br/><br/>
+                        <label for="dob">Date of Birth</label> 
                     </span>
                     <!-- <span *ngIf="dob.invalid && dob.touched" class="err">Date Of Birth Field is Invalid<br/></span><br/> -->
                     <span class="p-float-label" >
@@ -63,7 +68,7 @@
                     </span>
                     <span *ngIf="salary.invalid && salary.touched" class="err">Salary Field is Invalid<br/></span><br/>
                     <span class="p-float-label" >
-                        <p-autoComplete  [(ngModel)]="employee.skills" id="skills" name="skills" required skills #skills="ngModel" [suggestions]="filteredCountries" (completeMethod)="filterApplicant($event)"  autoWidth="false"  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-autoComplete><br/><br/>
+                        <p-autoComplete  [(ngModel)]="employee.skills" id="skills" name="skills" required skills #skills="ngModel" [suggestions]="filteredCountries" (completeMethod)="filterApplicant($event)" [multiple]="true"  autoWidth="false"  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-autoComplete><br/><br/>
 
                         <label for="skills">Skills</label>
                     </span>
@@ -104,14 +109,12 @@
                         &nbsp;&nbsp; <label for="fcolor">Favourite Color</label>
                     </span>
                    
-                    <button pButton pRipple type="submit" [disabled]="employee.invalid"  label="Submit" class="p-button-raised p-button-text" style="width:100%;"></button>
+                    <button pButton pRipple type="submit" [disabled]="emp.invalid"  label="Submit" class="p-button-raised p-button-text" style="width:100%;"></button>
                     
                 </p-card>
         </div>
     </div>
     </form>
-        
-   
 
 </div>
 <div class="container-fluid">

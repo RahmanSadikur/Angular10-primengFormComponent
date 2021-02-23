@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ToastModule} from 'primeng/toast';
 
 import { HRRoutingModule } from './hr-routing.module';
 import { EmployeeComponent } from './employee/employee.component';
@@ -24,7 +25,8 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {EditorModule} from 'primeng/editor';
 import {MessagesModule} from 'primeng/messages';
-import {MenubarModule} from 'primeng/menubar';
+import { MomentModule } from 'ngx-moment';
+
 
 
 
@@ -56,7 +58,9 @@ import {MenubarModule} from 'primeng/menubar';
     ColorPickerModule,
     EditorModule,
     MessagesModule,
-    MenubarModule,
+    ToastModule,
+    MomentModule
+    
   
 
 
@@ -64,4 +68,6 @@ import {MenubarModule} from 'primeng/menubar';
 
   ]
 })
-export class HRModule { }
+export class HRModule { 
+  
+}
