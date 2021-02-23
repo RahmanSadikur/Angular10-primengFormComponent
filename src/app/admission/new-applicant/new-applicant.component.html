@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col col-md-6">
 
-            <p-table [columns]="cols" #dt  [value]="Applicants" [paginator]="true" [rows]="10" sortMode="multiple" [globalFilterFields]="['Name']" selectionMode="single" (onRowSelect)="onRowSelect($event)"  [rowHover]="true" dataKey="id">
+            <p-table [columns]="cols" #dt  [value]="Applicants" [paginator]="true" [rows]="3" sortMode="multiple" [globalFilterFields]="['Name']" selectionMode="single" (onRowSelect)="onRowSelect($event)"  [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="table-header">
                         List of Applicants

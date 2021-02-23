@@ -69,7 +69,7 @@ export class NewApplicantComponent implements OnInit {
      }
     
    this.Applicants=[...this.Applicants];
-   
+   this.New()
 
   }
   findIndexByUid(Uid: number): number {
@@ -92,7 +92,7 @@ export class NewApplicantComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.Applicants = this.Applicants.filter(val => val.Uid !== data.Uid);
-      
+        this.New()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Applicant Deleted', life: 3000});
       }
     });
@@ -102,7 +102,7 @@ export class NewApplicantComponent implements OnInit {
   NewApplicantName={};
 
   Applicant={
-    Name:"grt",
+    Name:"",
     Uid:-1,
     id:[],
     isvalid:false,
@@ -110,6 +110,17 @@ export class NewApplicantComponent implements OnInit {
     selectedValues: [],
     phone:""
   };
+  New(){
+    this.Applicant.Name="";
+    this.Applicant.Uid=-1;
+    this.Applicant.id=[];
+    this.Applicant.isvalid=false;
+
+    this.Applicant.date=new Date();
+    this.Applicant.phone="";
+
+
+  }
   cols = [
     { field:'Uid', header: 'Uid' },
     { field:'Name', header: 'Name' },
