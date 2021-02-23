@@ -1,14 +1,14 @@
 <div class="container-fluid">
-    <form #newApplicant="ngForm" (ngSubmit)="OnSubmit(Applicant)">
+    <form #newApplicant="ngForm"  (ngSubmit)="OnSubmit(Applicant)">
 
-   
+        <p-toast></p-toast>
     <div class="row">
         <div class="col col-md-6">
 
-            <p-table [columns]="cols" #dt  [value]="products" [paginator]="true" [rows]="2" sortMode="multiple" [globalFilterFields]="['name']" selectionMode="single" (onRowSelect)="onRowSelect($event)"  [rowHover]="true" dataKey="id">
+            <p-table [columns]="cols" #dt  [value]="Applicants" [paginator]="true" [rows]="10" sortMode="multiple" [globalFilterFields]="['Name']" selectionMode="single" (onRowSelect)="onRowSelect($event)"  [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="table-header">
-                        List of Products
+                        List of Applicants
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
@@ -37,7 +37,7 @@
                     </tr>
                 </ng-template> -->
                 <ng-template pTemplate="summary">
-               {{selectedProducts.name}}
+               
                 </ng-template>
             </p-table>
 
@@ -47,22 +47,38 @@
         </div>
         <div class="col col-md-6">
             <p-card>
-                
+                <div class=" p-float-label ">
+                  <input id="Uid"   type="text" name="Uid" [(ngModel)]="Applicant.Uid" readonly=true pInputText autoWidth="false" style="width:100%;"> 
+                     <label for="Uid">Uid</label><br/> 
+            
+                </div>
+                <div >
+                    <label for="name">Name</label>
+                    <p-autoComplete class="ngcustome" [(ngModel)]="Applicant.Name" id="name" name="Name" [suggestions]="filterednewApplicant" (completeMethod)="filterApplicant($event)"  autoWidth="false" [style]="{'width':'100%'}"[inputStyle]="{'width':'100%'}"></p-autoComplete><br/>
+                    <br/>
+                </div>
                
-              
-              
-                <p-autoComplete class="ngcustome" [(ngModel)]="Applicant.Name" id="name" name="Name" [suggestions]="filterednewApplicant" (completeMethod)="filterApplicant($event)"  autoWidth="false" [style]="{'width':'100%'}"[inputStyle]="{'width':'100%'}"></p-autoComplete><br/><br/>
-                <p-dropdown  [options]="NewApplicantName" [(ngModel)]="Applicant.Uid" name="Uid" optionLabel="name" optionValue="id"  autoWidth="false" [style]="{'width':'100%'}"></p-dropdown><br/><br/>
+             <div>
+                <!-- <p-dropdown  [options]="NewApplicantName" [(ngModel)]="Applicant.Uid" name="Uid" optionLabel="name" optionValue="id"  autoWidth="false" [style]="{'width':'100%'}"></p-dropdown><br/><br/> -->
                 <p-multiSelect [options]="NewApplicantName" [(ngModel)]="Applicant.id" name="id" optionLabel="name" optionValue="id" autoWidth="false" [style]="{'width':'100%'}"></p-multiSelect><br/><br/>
+             </div>
+               <div>
                 <p-calendar  [(ngModel)]="Applicant.date" name="date" dateFormat="dd.mm.yy" [showIcon]="true" inputId="phone"  [style]="{'width':'100%'}"></p-calendar><br/><br/>
+               </div>
+               
+               <div class=" p-float-label  ">
+                <input id="phone"   type="text" name="phone" [(ngModel)]="Applicant.phone" readonly=true pInputText style="width:100%;"> 
+                   <label for="phone">phone</label><br/> 
+          
+              </div>
 
                 <div class="p-field-radiobutton">
-                    <p-radioButton name="isvalid" value=true [(ngModel)]="Applicant.isvalid" inputId="isvalid1" [styleClass]="'custom-width'"></p-radioButton>
-                    <label for="isvalid1">Yes</label>
+                    <p-radioButton name="isvalid" value=1 [(ngModel)]="Applicant.isvalid" inputId="isvalid1" [styleClass]="'custom-width'"></p-radioButton>
+                    <label for="isvalid1">Valid</label>
                 </div>
                 <div class="p-field-radiobutton">
-                    <p-radioButton name="isvalid" value=false [(ngModel)]="Applicant.isvalid" inputId="isvalid0"></p-radioButton>
-                    <label for="isvalid0">No</label>
+                    <p-radioButton name="isvalid" value=0 [(ngModel)]="Applicant.isvalid" inputId="isvalid0"></p-radioButton>
+                    <label for="isvalid0">Invalid</label>
                 </div>
                 <div class="p-field-checkbox">
                     <p-checkbox name="groupname" value="Good" [(ngModel)]="Applicant.selectedValues" inputId="Good"></p-checkbox>
@@ -71,11 +87,29 @@
                 <div class="p-field-checkbox">
                     <p-checkbox name="groupname" value="Very Good" [(ngModel)]="Applicant.selectedValues" inputId="veryGood"></p-checkbox>
                     <label for="veryGood">Very Good</label>
-                </div>
                 
+                </div>
+
+
+
+                <!-- <div class="form-group col-sm-4">
+                    <label for="">Password</label>
+                    <input type="text" class="form-control "  [(ngModel)]="Applicant.phone" formControlName="phone" [class.is-invalid]="(myForm.get('phone').touched || myForm.get('phone').dirty)">
+                    <span class="invalid-feedback" *ngIf="(myForm.get('phone').touched || myForm.get('phone').dirty) && myForm.get('phone').invalid">
+                      Password is required
+                    </span>
+                  </div> -->
+               <Div class="row">
+                <Div class="col col-md-6"> <button pButton pRipple type="submit"  label="Submit" class="p-button-raised p-button-text" autoWidth="false" [style]="{'width':'100%'}" ></button></Div>
+                <Div class="col col-md-6"> <button pButton pRipple type="button"  label="Delete" (click)="delete(Applicant)" class="p-button-raised p-button-text" autoWidth="false" [style]="{'width':'100%'}" ></button></Div>
+               </Div>
                
 
-                <button pButton pRipple type="submit"  label="Submit" class="p-button-raised p-button-text" autoWidth="false" [style]="{'width':'100%'}" ></button>
+
+               
+              
+              
+          
    
             
             </p-card>
@@ -88,6 +122,16 @@
     
 </form>
 </div>
+<div class="container-fluid">
+
+
+    
+</div>
+
+
+
+
+
 <div class="container-fluid">
     
         <p-card>

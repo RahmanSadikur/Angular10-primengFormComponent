@@ -18,6 +18,10 @@ import {TableModule} from 'primeng/table';
 import {CheckboxModule} from 'primeng/checkbox';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {InputMaskModule} from 'primeng/inputmask';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {DialogModule} from 'primeng/dialog';
+import {RatingModule} from 'primeng/rating';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [AdmissionComponent, NewApplicantComponent],
@@ -37,7 +41,11 @@ import {InputMaskModule} from 'primeng/inputmask';
     TableModule,
     CheckboxModule,
     MultiSelectModule,
-    InputMaskModule
+    InputMaskModule,
+    ConfirmDialogModule,
+    ToastModule,
+    RatingModule,
+    DialogModule
   ]
 })
 export class AdmissionModule { }

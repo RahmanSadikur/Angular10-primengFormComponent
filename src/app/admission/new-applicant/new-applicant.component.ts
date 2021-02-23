@@ -2,28 +2,52 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import{NewApplicantService}from '../new-applicant.service';
 import {Product} from './products';
+import { MessageService } from 'primeng/api';
+import { SelectItem } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
+
+import { Validators, FormBuilder, FormGroup, FormControl ,AbstractControl} from '@angular/forms';
+import{Applicant}from './applicant'
+
 
 
 @Component({
   selector: 'app-new-applicant',
   templateUrl: './new-applicant.component.html',
-  styleUrls: ['./new-applicant.component.css']
+  styleUrls: ['./new-applicant.component.css'],
+  providers: [MessageService, ConfirmationService]
   
 })
 export class NewApplicantComponent implements OnInit {
   products: Product[];
   selectedProducts={};
+  Applicants:Applicant[];
+  //myForm: FormGroup;
  i:number;
  
 
-  constructor(private NewApplicantService:NewApplicantService ,private router: Router) { }
-
+  constructor(private primengConfig: PrimeNGConfig,private NewApplicantService:NewApplicantService ,private router: Router,private  messageService: MessageService, private fb: FormBuilder, private confirmationService: ConfirmationService) { }
+ 
   ngOnInit(): void {
-    this.NewApplicantService.getApplicant().subscribe(data=>{
-      this.newApplicant.push(data);
-      this.NewApplicantName=data;
-
+    // this.myForm = this.fb.group({
+    //   phone: ['', [ValidatePhone]] // added the function in validators array of form-control
+    // });
+    this.NewApplicantService.getAllApplicant().subscribe(data=>{
+      this.Applicants=data['data'];
+      for(var i=0;i<this.Applicants.length;i++)
+      {
+        this.Applicants[i].date=new Date(this.Applicants[i].date)
+      }
+      console.warn(this.Applicants)
+ 
                   });
+    this.NewApplicantService.getApplicant().subscribe(data=>{
+     
+      this.NewApplicantName=data;
+       });
+
    this.NewApplicantService.getProduct().then(data => {
      this.products = data;
     
@@ -31,9 +55,48 @@ export class NewApplicantComponent implements OnInit {
     
   }
   OnSubmit(data){
-    console.warn(data);
+    console.warn(data.Uid);
+     if(data.Uid===-1)
+     {
+       data.Uid=this.Applicants.length+1;
+       this.Applicants.push(data);
+       this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Saved Succedded', life: 3000});
+     }
+  
+     else {
+      this.Applicants[this.findIndexByUid(data.Uid)] = data;
+       this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Update succeed', life: 3000});
+     }
+    
+   this.Applicants=[...this.Applicants];
+   
+
   }
-  newApplicant=[];
+  findIndexByUid(Uid: number): number {
+    let index = -1;
+    for (let i = 0; i < this.Applicants.length; i++) {
+      if (this.Applicants[i].Uid === Uid) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
+  delete(data) {
+    this.messageService.add({severity: 'success', summary: 'Successful', detail: data.Uid, life: 3000});
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + data.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.Applicants = this.Applicants.filter(val => val.Uid !== data.Uid);
+      
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Applicant Deleted', life: 3000});
+      }
+    });
+  }
+
   filterednewApplicant=[];
   NewApplicantName={};
 
@@ -47,16 +110,16 @@ export class NewApplicantComponent implements OnInit {
     phone:""
   };
   cols = [
-    { field: 'id', header: 'ID' },
-    { field: 'name', header: 'Name' },
-    { field: 'year', header: 'Year' },
-    { field: 'color', header: 'Color' },
-    { field: ' pantone_value', header: ' Pantone Value' },
+    { field:'Uid', header: 'Uid' },
+    { field:'Name', header: 'Name' },
+    { field:'date', header: 'Date' },
+    { field:'phone', header: 'Phone' },
+    { field:'isvalid', header: 'IsValid' },
 ];
   
   onRowSelect(event) {
     this.selectedProducts = event.data;
-    this.Applicant.Uid=event.data.id;
+    this.Applicant=event.data;
     console.warn(this.selectedProducts);
     }
          
@@ -65,22 +128,23 @@ export class NewApplicantComponent implements OnInit {
     let filtered : any[] = [];
     let query = event.query;
                 
-    for(let i = 0; i < this.newApplicant[0].length; i++) {
-          let applicant = this.newApplicant[0][i];
+    for(let i = 0; i < this.Applicants.length; i++) {
+          let applicant = this.Applicants[i];
                     
                    
-          if (applicant.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          if (applicant.Name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
                      
-                filtered.push(applicant.name);
+                filtered.push(applicant.Name);
                        
             }
       }
                 
      this.filterednewApplicant = filtered;
-            
-
 
    }
+
+
+
    nextPage() {
    
     this.router.navigate(['/hr/employee']);
@@ -92,3 +156,8 @@ this.router.navigate(['test2']);
 }
   
 }
+function ValidatePhone(control: AbstractControl): {[key: string]: any} | null  {
+  if (control.value && control.value.length != 10) {
+    return { 'phoneNumberInvalid': true };
+  }
+  return null;}
