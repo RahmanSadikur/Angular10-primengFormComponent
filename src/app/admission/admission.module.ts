@@ -23,6 +23,7 @@ import {DialogModule} from 'primeng/dialog';
 import {RatingModule} from 'primeng/rating';
 import {ToastModule} from 'primeng/toast';
 
+
 @NgModule({
   declarations: [AdmissionComponent, NewApplicantComponent],
   imports: [
@@ -45,7 +46,8 @@ import {ToastModule} from 'primeng/toast';
     ConfirmDialogModule,
     ToastModule,
     RatingModule,
-    DialogModule
+    DialogModule,
+    
   ]
 })
 export class AdmissionModule { }

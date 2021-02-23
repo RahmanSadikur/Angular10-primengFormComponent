@@ -23,6 +23,7 @@ import { VonPrimengFormModule } from '@von-development-studio/primeng-form-valid
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { VonPrimengFormModule } from '@von-development-studio/primeng-form-valid
      CardModule,
      MenubarModule,
      StepsModule,
-     VonPrimengFormModule
+     VonPrimengFormModule,
+  
     
   ],
   providers: [],

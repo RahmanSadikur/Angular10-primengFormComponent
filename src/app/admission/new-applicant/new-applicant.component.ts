@@ -84,7 +84,8 @@ export class NewApplicantComponent implements OnInit {
   }
 
   delete(data) {
-    this.messageService.add({severity: 'success', summary: 'Successful', detail: data.Uid, life: 3000});
+   // this.messageService.add({severity: 'success', summary: 'Successful', detail: data.Uid, life: 3000});
+  // this.Applicants = this.Applicants.filter(val => val.Uid !== data.Uid);
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + data.name + '?',
       header: 'Confirm',
